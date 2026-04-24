@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Medclass — Formation Médico-Dentaire à Paris</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+
+    /* ─── RESET & BASE ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1a2740;
+      --gold:   #b8965a;
+      --gold-light: #d4b483;
+      --cream:  #faf8f5;
+      --white:  #ffffff;
+      --grey:   #6b7280;
+      --light:  #f3f0eb;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--navy);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(250, 248, 245, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(184, 150, 90, 0.2);
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--navy);
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--navy);
+      color: var(--white) !important;
+      padding: 0.5rem 1.3rem;
+      border-radius: 2px;
+      transition: background 0.3s !important;
+    }
+
+    .nav-cta:hover { background: var(--gold) !important; color: var(--white) !important; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 5% 80px;
+      background:
+        linear-gradient(160deg, rgba(26,39,64,0.92) 0%, rgba(26,39,64,0.75) 100%),
+        url('https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1600&q=80') center/cover no-repeat;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 80px;
+      background: linear-gradient(to top, var(--cream), transparent);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.4rem 1.2rem;
+      border-radius: 2px;
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 300;
+      margin-bottom: 0.3em;
+      letter-spacing: 0.02em;
+    }
+
+    .hero h1 strong {
+      font-weight: 600;
+      color: var(--gold-light);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 300;
+      opacity: 0.85;
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--white);
+      padding: 0.85rem 2.2rem;
+      border-radius: 2px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.3s, transform 0.2s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.6);
+      color: var(--white);
+      padding: 0.85rem 2.2rem;
+      border-radius: 2px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: border-color 0.3s, background 0.3s;
+      display: inline-block;
+    }
+
+    .btn-outline:hover { border-color: var(--gold); background: rgba(184,150,90,0.15); }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 90px 5%; }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+    }
+
+    .section-title strong { font-weight: 600; }
+
+    .section-divider {
+      width: 50px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1.5rem 0;
+    }
+
+    /* ─── ATOUTS ─── */
+    .atouts {
+      background: var(--white);
+    }
+
+    .atouts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .atout-card {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      border: 1px solid rgba(184,150,90,0.15);
+      border-radius: 4px;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+
+    .atout-card:hover {
+      box-shadow: 0 12px 40px rgba(26,39,64,0.08);
+      transform: translateY(-4px);
+    }
+
+    .atout-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .atout-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.6rem;
+      color: var(--navy);
+    }
+
+    .atout-card p {
+      font-size: 0.9rem;
+      color: var(--grey);
+      line-height: 1.6;
+    }
+
+    /* ─── FORMATIONS ─── */
+    .formations { background: var(--cream); }
+
+    .formations-intro {
+      max-width: 650px;
+      margin-bottom: 3.5rem;
+    }
+
+    .formations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    /* 
+    ════════════════════════════════════════
+    👇 POUR AJOUTER UNE FORMATION :
+    Copie un bloc .formation-card et 
+    modifie le titre, l'emoji et le texte.
+    ════════════════════════════════════════
+    */
+    .formation-card {
+      background: var(--white);
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid rgba(184,150,90,0.15);
+      transition: box-shadow 0.3s, transform 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .formation-card:hover {
+      box-shadow: 0 16px 50px rgba(26,39,64,0.1);
+      transform: translateY(-5px);
+    }
+
+    .formation-header {
+      background: var(--navy);
+      padding: 2rem 1.8rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .formation-header::before {
+      content: '';
+      position: absolute;
+      top: -20px; right: -20px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: rgba(184,150,90,0.12);
+    }
+
+    .formation-emoji {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .formation-header h3 {
+      color: var(--white);
+      font-size: 1.3rem;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .formation-tag {
+      display: inline-block;
+      background: rgba(184,150,90,0.25);
+      color: var(--gold-light);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+      border-radius: 2px;
+      margin-top: 0.5rem;
+      position: relative;
+    }
+
+    .formation-body {
+      padding: 1.8rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .formation-body p {
+      font-size: 0.9rem;
+      color: var(--grey);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .formation-body .btn-primary {
+      margin-top: 1.5rem;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* ─── POURQUOI NOUS ─── */
+    .why {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .why .section-title { color: var(--white); }
+    .why .section-divider { background: var(--gold); }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .why-text p {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .why-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .stat-box {
+      border: 1px solid rgba(184,150,90,0.3);
+      border-radius: 4px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+      display: block;
+    }
+
+    /* ─── CONTACT ─── */
+    .contact { background: var(--white); }
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+
+    .contact-info h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info p {
+      font-size: 0.9rem;
+      color: var(--grey);
+      margin-bottom: 2rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .contact-detail .icon {
+      width: 40px; height: 40px;
+      background: var(--light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    /* Google Form embed */
+    .form-container {
+      background: var(--cream);
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(184,150,90,0.2);
+    }
+
+    .form-container iframe {
+      width: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.55);
+      text-align: center;
+      padding: 2.5rem 5%;
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+    }
+
+    footer strong { color: var(--gold); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+
+      .why-grid,
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .why-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ NAVBAR -->
+<nav>
+  <a href="#" class="nav-logo">Med<span>class</span></a>
+  <ul class="nav-links">
+    <li><a href="#formations">Formations</a></li>
+    <li><a href="#pourquoi">À propos</a></li>
+    <li><a href="#contact" class="nav-cta">S'inscrire</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════════════ HERO -->
+<section class="hero">
+  <div>
+    <span class="hero-badge">Formation Médico-Dentaire · Paris</span>
+    <h1>L'excellence clinique<br/><strong>en petit groupe</strong></h1>
+    <p class="hero-sub">
+      Des formations pratiques et spécialisées, conçues par et pour les professionnels de santé dentaire.
+    </p>
+    <div class="hero-btns">
+      <a href="#formations" class="btn-primary">Voir les formations</a>
+      <a href="#contact" class="btn-outline">Nous contacter</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ ATOUTS -->
+<section class="atouts">
+  <span class="section-label">Notre approche</span>
+  <h2 class="section-title">Pourquoi <strong>Medclass</strong> ?</h2>
+  <div class="section-divider"></div>
+
+  <div class="atouts-grid">
+    <div class="atout-card">
+      <div class="atout-icon">🎯</div>
+      <h3>Pratique avant tout</h3>
+      <p>Chaque formation est ancrée dans les réalités du cabinet. Vous repartez avec des techniques directement applicables.</p>
+    </div>
+    <div class="atout-card">
+      <div class="atout-icon">👥</div>
+      <h3>Petits groupes</h3>
+      <p>Maximum 6 à 8 participants par session pour garantir un suivi personnalisé et des échanges de qualité.</p>
+    </div>
+    <div class="atout-card">
+      <div class="atout-icon">📍</div>
+      <h3>Paris</h3>
+      <p>Des sessions organisées au cœur de Paris, dans un cadre propice à l'apprentissage et au réseautage professionnel.</p>
+    </div>
+    <div class="atout-card">
+      <div class="atout-icon">🦷</div>
+      <h3>Expertise pointue</h3>
+      <p>Des formateurs reconnus dans leurs spécialités, alliant rigueur scientifique et pédagogie accessible.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ FORMATIONS -->
+<section class="formations" id="formations">
+  <span class="section-label">Catalogue</span>
+  <div class="formations-intro">
+    <h2 class="section-title">Nos <strong>formations</strong></h2>
+    <div class="section-divider"></div>
+    <p style="color: var(--grey); font-size: 0.95rem;">
+      Des modules spécialisés, en constante évolution, pour répondre aux enjeux actuels de la pratique odontologique.
+    </p>
+  </div>
+
+  <div class="formations-grid">
+
+    <!-- ─── FORMATION 1 ─── -->
+    <div class="formation-card">
+      <div class="formation-header">
+        <span class="formation-emoji">🧒</span>
+        <h3>Pédodontie pour l'Orthodontie</h3>
+        <span class="formation-tag">Pratique · 1 jour</span>
+      </div>
+      <div class="formation-body">
+        <p>
+          Apprenez à intégrer une approche pédodontique dans votre pratique orthodontique. 
+          Gestion du jeune patient, diagnostic précoce et protocoles adaptés.
+        </p>
+        <a href="#contact" class="btn-primary">S'inscrire</a>
+      </div>
+    </div>
+
+    <!-- ─── FORMATION 2 ─── -->
+    <div class="formation-card">
+      <div class="formation-header">
+        <span class="formation-emoji">😬</span>
+        <h3>Bruxisme</h3>
+        <span class="formation-tag">Clinique · 1 jour</span>
+      </div>
+      <div class="formation-body">
+        <p>
+          Diagnostic différentiel, protocoles de prise en charge et solutions thérapeutiques modernes 
+          du bruxisme du sommeil et d'éveil.
+        </p>
+        <a href="#contact" class="btn-primary">S'inscrire</a>
+      </div>
+    </div>
+
+    <!-- ─── FORMATION 3 ─── -->
+    <div class="formation-card">
+      <div class="formation-header">
+        <span class="formation-emoji">😴</span>
+        <h3>SAHOS</h3>
+        <span class="formation-tag">Interdisciplinaire · 1 jour</span>
+      </div>
+      <div class="formation-body">
+        <p>
+          Syndrome d'apnée-hypopnée obstructive du sommeil : dépistage en cabinet, 
+          orthèses d'avancée mandibulaire et coordination avec les équipes médicales.
+        </p>
+        <a href="#contact" class="btn-primary">S'inscrire</a>
+      </div>
+    </div>
+
+    <!-- ─── FORMATION 4 ─── -->
+    <div class="formation-card">
+      <div class="formation-header">
+        <span class="formation-emoji">🔄</span>
+        <h3>Traitement Interception</h3>
+        <span class="formation-tag">Orthodontie · 1 jour</span>
+      </div>
+      <div class="formation-body">
+        <p>
+          Identifier et traiter précocement les dysmorphoses dento-maxillaires. 
+          Cas cliniques, choix thérapeutiques et timing d'intervention.
+        </p>
+        <a href="#contact" class="btn-primary">S'inscrire</a>
+      </div>
+    </div>
+
+    <!-- 
+    ════════════════════════════════════════════════════════
+    ➕ POUR AJOUTER UNE NOUVELLE FORMATION :
+    Copie le bloc ci-dessous, décommente-le,
+    et remplace les textes entre les balises.
+    ════════════════════════════════════════════════════════
+
+    <div class="formation-card">
+      <div class="formation-header">
+        <span class="formation-emoji">🦷</span>
+        <h3>TITRE DE LA FORMATION</h3>
+        <span class="formation-tag">TYPE · DURÉE</span>
+      </div>
+      <div class="formation-body">
+        <p>
+          Description de la formation ici. 
+          Objectifs, public cible, contenu principal.
+        </p>
+        <a href="#contact" class="btn-primary">S'inscrire</a>
+      </div>
+    </div>
+    -->
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ POURQUOI NOUS -->
+<section class="why" id="pourquoi">
+  <span class="section-label" style="color: var(--gold);">Notre mission</span>
+  <div class="why-grid">
+    <div class="why-text">
+      <h2 class="section-title">Former les praticiens<br/><strong>de demain</strong></h2>
+      <div class="section-divider"></div>
+      <p>
+        Medclass est née d'un constat simple : les formations disponibles manquent souvent 
+        de profondeur clinique et de lien avec la réalité quotidienne du cabinet.
+      </p>
+      <p>
+        Notre approche repose sur l'échange entre pairs, la pratique encadrée et 
+        la transmission d'un savoir-faire concret, applicable dès le lendemain.
+      </p>
+      <p>
+        Chaque session réunit un groupe restreint de professionnels motivés, 
+        dans un environnement propice à l'apprentissage et aux échanges.
+      </p>
+    </div>
+    <div class="why-stats">
+      <div class="stat-box">
+        <span class="stat-number">6</span>
+        <span class="stat-label">Participants max<br/>par session</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">4</span>
+        <span class="stat-label">Spécialités<br/>enseignées</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">Pratique<br/>clinique</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">Paris</span>
+        <span class="stat-label">Formations<br/>en présentiel</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ CONTACT -->
+<section class="contact" id="contact">
+  <span class="section-label">Inscription</span>
+  <h2 class="section-title">Rejoindre une <strong>formation</strong></h2>
+  <div class="section-divider"></div>
+
+  <div class="contact-wrapper">
+    <div class="contact-info">
+      <h3>Nous sommes à votre écoute</h3>
+      <p>
+        Remplissez le formulaire ci-contre et notre équipe vous recontacte 
+        sous 48h pour vous accompagner dans le choix de votre formation.
+      </p>
+
+      <div class="contact-detail">
+        <div class="icon">📧</div>
+        <div>
+          <strong>Email</strong><br/>
+          <a href="mailto:direction.medclass@gmail.com" style="color: var(--gold); text-decoration: none;">
+            direction.medclass@gmail.com
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="icon">📍</div>
+        <div>
+          <strong>Lieu</strong><br/>
+          Paris, France
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="icon">👥</div>
+        <div>
+          <strong>Format</strong><br/>
+          Petits groupes, en présentiel
+        </div>
+      </div>
+    </div>
+
+    <!-- 
+    ════════════════════════════════════════════════════════
+    👇 REMPLACE L'URL CI-DESSOUS PAR TON VRAI LIEN GOOGLE FORM
+    
+    Comment faire :
+    1. Va sur forms.google.com
+    2. Crée ton formulaire (Nom, Prénom, Email, 
+       Téléphone, Formation souhaitée, Message)
+    3. Clique sur "Envoyer" → icône </> → copie le code
+    4. Remplace l'URL dans src="..." ci-dessous
+       (garde uniquement la partie src du iframe Google)
+    ════════════════════════════════════════════════════════
+    -->
+    <div class="form-container">
+      <iframe
+        src="COLLE_ICI_TON_LIEN_GOOGLE_FORM_EMBED"
+        width="100%"
+        height="620"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        loading="lazy">
+        Chargement du formulaire…
+      </iframe>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ FOOTER -->
+<footer>
+  <p>© 2025 <strong>Medclass</strong> · Formation Médico-Dentaire à Paris · 
+  <a href="mailto:direction.medclass@gmail.com" style="color: var(--gold-light); text-decoration: none;">
+    direction.medclass@gmail.com
+  </a></p>
+</footer>
+
+</body>
+</html>
